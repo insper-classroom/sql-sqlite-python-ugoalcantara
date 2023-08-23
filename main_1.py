@@ -40,7 +40,7 @@ print(cursor.fetchall())
 conn.commit()
 
 
-cursor.execute("UPDATE Estudantes SET AnoIngresso = ? WHERE Nome = ?", (2009, "Maria Oliveira"))
+cursor.execute("UPDATE Estudantes SET AnoIngresso = ? WHERE Nome = ?", (2008, "Maria Oliveira"))
 cursor.execute("SELECT * FROM Estudantes")
 conn.commit()
 print(cursor.fetchall())
@@ -49,6 +49,7 @@ print(cursor.fetchall())
 cursor.execute("DELETE FROM Estudantes WHERE ID = ?", (1,))  
 cursor.execute("SELECT * FROM Estudantes")
 conn.commit()
+
 print(cursor.fetchall()) 
 
 
