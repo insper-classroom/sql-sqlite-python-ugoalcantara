@@ -2,34 +2,34 @@ import sqlite3
 
 conn = sqlite3.connect('db/database_alunos.db')
 
-def cria_tabela(conn):
+def tabela(conn):
    cursor = conn.cursor()
    cursor.execute("""
     CREATE TABLE IF NOT EXISTS Estudantes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     Nome TEXT NOT NULL,
     Curso TEXT NOT NULL,
-    AnodeIngresso INTEGER
+    AnoIngresso INTEGER
     );
 """)
    
-def registro(conn, Estudantes):
+def inscricao(conn, Estudantes):
     conn.cursor().executemany("""
-    INSERT INTO Estudantes (Nome, Curso, AnodeIngresso)
+    INSERT INTO Estudantes (Nome, Curso, AnoIngresso)
     VALUES (?, ?, ?);
     """, Estudantes)
 
-def consulta(conn):
+def consultas(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Livros")
     return cursor.fetchall()
 
-def atualiza(conn, table, oq_atualização, ident, ja_atualizado, ident_name):
+def nova(conn, table, oq_atualização, ident, ja_atualizado, ident_name):
     cursor = conn.cursor()
     cursor.execute(f"UPDATE {table} SET {oq_atualização} = ? WHERE {ident} = ?", (ja_atualizado, ident_name))
     conn.commit()
 
-def deleta (conn, table, ident, deletar):
+def lixo(conn, table, ident, deletar):
     cursor = conn.cursor()
-    cursor.execute(f"DELETE FROM {table} WHERE {ident} = ?", {deletar,})
+    cursor.execute(f"DELETE FROM {table} WHERE {ident} = ?", (deletar,))
     conn.commit()
